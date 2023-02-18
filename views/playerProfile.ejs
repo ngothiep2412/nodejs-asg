@@ -1,0 +1,44 @@
+<html lang="en">
+<%- include ('./layout/header') %>
+    <div class="page-body container">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="<%=player.image%>" alt="Placeholder image" />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="<%=player.image%>" alt="Placeholder image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%=player.name%></p>
+            </div>
+          </div>
+
+          <div class="content">
+            <div>
+              <p class="title is-5">Club:</p>
+              <%=player.club%>
+            </div>
+            <div>
+              <p class="title is-5">Position:</p>
+              <%=player.position%>
+            </div>
+            <div>
+              <p class="title is-5">Goals:</p>
+              <%=player.goals%>
+            </div>
+            <div>
+              <p class="title is-5">Is Captain?:</p>
+              <%=JSON.stringify(player.isCaptain)==='true' ? 'Yes' : 'No'%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

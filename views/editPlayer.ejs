@@ -1,0 +1,168 @@
+<html lang="en">
+<%- include ('./layout/header') %>
+  <div class="page-body container mt-5" style="margin-top: 2rem">
+    <div class="columns">
+      <div class="column is-one-quarter">
+              <aside class="menu " style="background: #ffffff;
+              box-shadow: 10px 10px 20px rgb(218 213 213 / 15%);
+              border-radius: 12px;">
+                  <ul class="menu-list has-text-grey-dark" style="font-size: 20px;">
+                    <li><a style="padding: 14px 20px; margin-bottom: 20px; font-weight: 500;" href="/players">Players</a></li>
+                    <li><a style="padding: 14px 20px; font-weight: 500;" href="/nations">Nations</a></li>
+                  </ul>
+                </aside>
+      </div>
+    <div class="column">
+      <form method="post">
+        <div class="columns">
+          <div class="column">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal " style="text-align: left !important;">
+                <label class="label">Name</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input required class="input is-info" name="name" type="text" value="<%=player.name%>" required />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal" style="text-align: left !important;">
+                <label class="label">Goals</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="control">
+                    <input required class="input is-info" name="goals" type="number" value="<%=player.goals%>" />
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+     
+
+        <div class="columns">
+          <div class="column">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal" style="text-align: left !important;">
+                <label class="label">Club</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select name="club">
+                        <%for (let club of clubList){ %>
+                        <option value="<%= club.name %>"
+                          <%= JSON.stringify(club.name) === JSON.stringify(player.club) ? 'selected' : '' %>>
+                          <%= club.name %></option>
+                        <% } %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field is-horizontal">
+              <div class="field-label is-normal" style="text-align: left !important;">
+                <label class="label">Position</label>
+              </div>
+              <div class="field-body">
+                <div class="field is-narrow">
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select name="position">
+                        <%for (let position of positionList){ %>
+                        <option value="<%= position.name %>"
+                          <%= JSON.stringify(position.name) === JSON.stringify(player.position) ? 'selected' : '' %>>
+                          <%= position.name %>
+                        </option>
+                        <% } %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+     
+
+        <div class="field is-horizontal" style="margin-bottom: 30px;">
+          <div class="is-normal" style="text-align: left !important; width: 100px; ">
+            <label class="label">Image</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input required class="input is-info" name="image" type="text" value="<%=player.image%>" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label" style="text-align: left !important;">
+            <label class="label">Is Captain?</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" name="isCaptain" value="true" required
+                    <%= JSON.stringify(player.isCaptain) === 'true' ? 'checked' : '' %> />
+                  Yes
+                </label>
+                <label class="radio">
+                  <input type="radio" name="isCaptain" value="false" required
+                    <%= JSON.stringify(player.isCaptain) === 'false' ? 'checked' : '' %> />
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal" style="text-align: center; ">
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" style="background-color: #1DC071; width:250px; height: 60px; border-radius: 8px;font-weight: 600;
+                font-size: 16px;" type="submit">
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <script>
+    // Lấy URL hiện tại
+    var currentUrl = window.location.href;
+    console.log(currentUrl);
+    // Nếu URL chứa "/players", đặt lớp "selected" cho li chứa link đó
+    if (currentUrl.includes("/players/editPlayer") ) {
+      document.querySelector('a[href="/players"]').parentNode.classList.add("selected");
+    }
+  
+    // Nếu URL chứa "/nations", đặt lớp "selected" cho li chứa link đó
+    if (currentUrl.includes("/nations")) {
+      document.querySelector('a[href="/nations"]').parentNode.classList.add("selected");
+    }
+  </script>
+</body>
+
+</html>
